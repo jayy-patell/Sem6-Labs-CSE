@@ -1,0 +1,51 @@
+<html>
+ <head>
+ <title>The jQuery Example</title>
+ <style>
+   table, td{
+  border: 1px solid black;
+   }
+   #mydiv{
+      position: fixed;
+      margin-left: 60%;
+   }
+ </style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+ </script>
+ <script type = "text/javascript" language = "javascript">
+ $(document).ready(function() {
+ $("button").click(function(){
+  $("#mydiv").animate({marginLeft: '10px'});
+});
+ 
+ });
+ </script>
+ </head>
+ <body>
+ <h2>Click the button below to move the table and image</h2>
+ <button type="button"><b>Animate!</b></button>
+ <br>
+ <br>
+ <div id = "mydiv">
+ <table>
+  <tr>
+    <td>Jay</td>
+    <td>Patel</td>
+    <td>210905294</td>
+  </tr>
+  <tr>
+    <td>Juboraj</td>
+    <td>Bengali</td>
+    <td>210905290</td>
+  </tr>
+  <tr>
+    <td>Jay</td>
+    <td>Patel</td>
+    <td>210905284</td>
+  </tr>
+</table>
+<br>
+<img src="image.jfif" alt="Cat" width="160" height="90">
+ </div>
+</body>
+</html>

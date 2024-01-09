@@ -1,0 +1,46 @@
+<html>
+<head>
+ <title></title>
+ <script src="jquery.js"></script>
+ <!-- <script type="text/javascript">
+    $(document).ready(function () {
+   $('#btnSubmit').click(function () {
+    var result = $('input[type="radio"]:checked');
+   if (result.length > 0) {
+    $('#divResult').html(result.val() + " is checked");
+    }
+   else {
+    $('#divResult').html("No radio button checked");
+    }
+    });
+    });
+    </script>  -->
+ <script type="text/javascript">
+    $(document).ready(function () {
+   $('#btnSubmit').click(function () {
+    var result = $('input[type="checkbox"]:checked');
+   if (result.length > 0) {
+    var resultString = result.length + " checkboxe(s) checked<br/>";
+   result.each(function () {
+    resultString += $(this).val() + "<br/>";
+    });
+    $('#divResult').html(resultString);
+    } 
+    else {
+ $('#divResult').html("No checkbox checked");
+ }
+ });
+ });
+ </script> 
+    </script>
+
+</head>
+<body style="font-family:Arial">
+Gender :
+ <input type="checkbox" name="gender" value="Male">Male
+ <input type="checkbox" name="gender" value="Female">Female
+ <input id="btnSubmit" type="submit" value="submit" />
+ <div id="divResult">
+ </div>
+</body>
+</html>

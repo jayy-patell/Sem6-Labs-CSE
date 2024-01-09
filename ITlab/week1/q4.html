@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>The jQuery Example</title>
+        <script src="jquery.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function () {
+                $("button").click(function () {
+                    var total = 0;
+                    var brand = document
+                        .getElementById('brand')
+                        .value;
+                    //var result = $('input[type="checkbox"]:checked');
+                    let items = [];
+                    $("input[type=checkbox]").each(function () {
+                        if ($(this).is(':checked')) 
+                            items.push($(this).val());
+                        }
+                    )
+                    console.log("1");
+                    var quantity1 = parseInt($('#mobile-quant').val());
+                    var quantity2 = parseInt($('#lap-quant').val());
+                    var total = quantity1 + quantity2;
+                    let bill = "brand: " + brand + "\nItems: " + items + "\nQuantity: " + total + "\n";
+                    alert(bill);
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mydiv">
+            <label for="brand">Choose a brand:</label>
+            <select name="cars" id="brand">
+                <option value="hp">HP</option>
+                <option value="nokia">Nokia</option>
+                <option value="motorola">Motorola</option>
+                <option value="samsung">Samsung</option>
+                <option value="apple">Apple</option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <input type="checkbox" id="vehicle1" value="mobile">
+            <label>
+                Mobile</label>
+            <input type="text" id="mobile-quant"><br>
+            <input type="checkbox" id="vehicle2" value="laptop">
+            <label>
+                Laptop</label>
+            <input type="text" id="lap-quant"><br>
+        </div>
+        <br><br>
+        <button>Produce bill</button>
+    </body>
+</html>
