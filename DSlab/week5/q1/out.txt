@@ -1,0 +1,222 @@
+Afghanistan	213
+Albania	199
+Algeria	212
+Andorra	206
+Angola	188
+Antigua and Barbuda	195
+Argentina	205
+Armenia	207
+Aruba	7
+Australia	1804
+Austria	212
+Azerbaijan	208
+Bahamas	186
+Bahamas, The	3
+Bahrain	213
+Bangladesh	200
+Barbados	191
+Belarus	209
+Belgium	233
+Belize	185
+Benin	192
+Bhutan	202
+Bolivia	197
+Bosnia and Herzegovina	203
+Botswana	178
+Brazil	3533
+Brunei	199
+Bulgaria	200
+Burkina Faso	198
+Burma	181
+Burundi	177
+Cabo Verde	188
+Cambodia	241
+Cameroon	202
+Canada	2870
+Cape Verde	1
+Cayman Islands	3
+Central African Republic	193
+Chad	189
+Channel Islands	1
+Chile	2237
+Colombia	4071
+Comoros	147
+Congo (Brazzaville)	193
+Congo (Kinshasa)	197
+Costa Rica	202
+Croatia	212
+Cuba	196
+Curacao	2
+Cyprus	199
+Czech Republic	207
+Denmark	596
+Diamond Princess	183
+Djibouti	190
+Dominica	186
+Dominican Republic	207
+East Timor	1
+Ecuador	207
+Egypt	223
+El Salvador	189
+Equatorial Guinea	193
+Eritrea	187
+Estonia	210
+Eswatini	194
+Ethiopia	195
+Faroe Islands	7
+Fiji	189
+Finland	239
+France	2149
+French Guiana	14
+Gabon	194
+Gambia	186
+Gambia, The	4
+Georgia	211
+Germany	2368
+Ghana	194
+Gibraltar	7
+Greece	211
+Greenland	6
+Grenada	186
+Guadeloupe	9
+Guam	6
+Guatemala	194
+Guernsey	8
+Guinea	195
+Guinea-Bissau	183
+Guyana	196
+Haiti	188
+Holy See	198
+Honduras	197
+Hong Kong	246
+Hungary	204
+Iceland	209
+India	4006
+Indonesia	206
+Iran	218
+Iraq	214
+Ireland	208
+Israel	216
+Italy	2897
+Ivory Coast	198
+Jamaica	197
+Japan	5907
+Jersey	8
+Jordan	205
+Kazakhstan	195
+Kenya	195
+Kosovo	189
+Kuwait	213
+Kyrgyzstan	190
+Laos	184
+Latvia	206
+Lebanon	216
+Lesotho	134
+Liberia	192
+Libya	184
+Liechtenstein	204
+Lithuania	209
+Luxembourg	208
+Macau	246
+Madagascar	188
+Mainland China	7624
+Malawi	175
+Malaysia	244
+Maldives	200
+Mali	183
+Malta	201
+Martinique	15
+Mauritania	194
+Mauritius	190
+Mayotte	6
+Mexico	4147
+Moldova	200
+Monaco	208
+Mongolia	198
+Montenegro	191
+Morocco	206
+Mozambique	186
+MS Zaandam	180
+Namibia	194
+Nepal	243
+Netherlands	1783
+New Zealand	209
+Nicaragua	189
+Niger	188
+Nigeria	209
+North Ireland	1
+North Macedonia	211
+Norway	211
+occupied Palestinian territory	7
+Oman	213
+Others	46
+Pakistan	847
+Palestine	5
+Panama	198
+Papua New Guinea	188
+Paraguay	200
+Peru	3177
+Philippines	239
+Poland	204
+Portugal	206
+Puerto Rico	6
+Qatar	208
+Republic of Ireland	1
+Republic of the Congo	6
+Reunion	11
+Romania	211
+Russia	9667
+Rwanda	194
+Saint Barthelemy	7
+Saint Kitts and Nevis	183
+Saint Lucia	194
+Saint Vincent and the Grenadines	194
+San Marino	210
+Sao Tome and Principe	171
+Saudi Arabia	206
+Senegal	206
+Serbia	202
+Seychelles	194
+Sierra Leone	177
+Singapore	245
+Slovakia	202
+Slovenia	203
+Somalia	192
+South Africa	203
+South Korea	246
+South Sudan	172
+Spain	2758
+Sri Lanka	241
+('St. Martin',)	1
+St. Martin	1
+Sudan	195
+Suriname	194
+Sweden	2457
+Switzerland	212
+Syria	186
+Taiwan	246
+Tajikistan	147
+Tanzania	192
+Thailand	246
+The Bahamas	6
+The Gambia	5
+Timor-Leste	186
+Togo	202
+Trinidad and Tobago	194
+Tunisia	204
+Turkey	197
+Uganda	187
+UK	2523
+Ukraine	3195
+United Arab Emirates	239
+Uruguay	194
+US	12356
+Uzbekistan	193
+Vatican City	4
+Venezuela	194
+Vietnam	245
+West Bank and Gaza	182
+Western Sahara	172
+Yemen	167
+Zambia	190
+Zimbabwe	188
