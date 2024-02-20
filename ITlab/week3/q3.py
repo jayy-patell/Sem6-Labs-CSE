@@ -1,4 +1,5 @@
-arr = list(map(int, input("Enter numbers ").split(' ')))
+arr = [int(x) for x in input("Enter array: ").split(' ')]
+# arr = list(map(int, input("Enter array: ").split(' ')))
 arr.sort()
 n = int(input("Search "))
 

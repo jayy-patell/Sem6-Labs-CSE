@@ -1,18 +1,22 @@
-class pairtargetsum:
-    def __init__(self, arr, target):
-        self.arr = arr
+class Question:
+    array = []
+    target = 0
+    def __init__(self,array,target):
+        self.array = array
         self.target = target
-    def pairFinder(self):
-        for i in range(0,len(self.arr)-1):
-            if self.arr[i]+self.arr[i+1]==self.target:
-                print(str(i+1)+" ,"+str(i+2))
-                return
-        print("pair not found")
 
-if __name__ == '__main__':
-    print("Enter the numbers in the array with space seperation")
-    arr = [int(i) for i in input().split()]
-    print("Enter the target sum")
-    t = int(input())
-    pts = pairtargetsum(arr,t)
-    pts.pairFinder()
+    def find(self):
+        tar = self.target
+        for i in range (len(self.array)-1):
+            j=i+1
+            while j<len(self.array):
+                if(self.array[i]+self.array[j] == tar):
+                    return i,j
+                j = j+1
+        return 'No solution'
+
+size = int(input("Enter no. of elements: "))
+array = [int(x) for x in input("Enter elements: ").split(' ')]
+target = int(input("target: "))
+solver = Question(array,target)
+print(solver.find())

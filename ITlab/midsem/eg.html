@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>
+            EgQuestion    
+        </title>
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function(){
+                    let team = "Ferrari";
+                    $("#Mercedes").bind("click",function(){
+                        team = "Mercedes"
+                    })
+                    $("#Ferrari").bind("click",function(){
+                        team = "Ferrari"
+                    })
+                    $("#Red-Bull").bind("click",function(){
+                        team = "Red-Bull"
+                    })
+
+                    $("#update-btn").bind("click", function(){
+                        event.preventDefault();
+                        let name = $("#name-input").val();
+                        let age = $("#age-input").val();
+                        $("#studentData").append("<tr scope='row'><td>" + name + "</td><td>" + age+"</td><td>"+team+"</td></tr>");
+                        
+                        // $("#table-name-cell").text(name);
+                        // $("#table-age-cell").text(age);
+                        // $("#table-team-cell").text(team);
+                    });
+
+                    $("#btn-animate").bind("click", function(){
+                        $("#table-whole").animate({left: '250px'});
+                    });
+                });
+            </script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="d-flex flew-row">
+            <div>
+            <h1>Submission Form</h1>
+            <form>
+                <label>Enter name:</label>
+                <select id="name-input">
+                    <option>jay</option>
+                    <option>jay1</option>
+                    <option>jay2</option>
+                </select>
+                <br>
+                <label>Enter age</label>
+                <input id="age-input" type="number">
+                <br>
+                <label>Select favorite team:</label>
+                <br>
+                <input type="radio" id="Mercedes" value="Mercedes">
+                <label>Mercedes</label>
+                <input type="radio" id="Ferrari" value="Ferrari">
+                <label>Ferrari</label>
+                <input type="radio" id="Red-Bull" value="Red-Bull">
+                <label>Red-Bull</label>
+                <input type="radio" id="Mclaren" value="Mclaren">
+                <label>Mclaren</label>
+                <input type="radio" id="Aston-Martin" value="Aston-Martin">
+                <label>Aston-Martin</label>
+                <br>
+                <button id="update-btn" style="margin-top: 1rem;">Update</button>
+            </form>
+            <button id="btn-animate">Animate</button>
+        </div>
+        <div class="ml-24">
+            <table id="table-whole" class="table" style="position: fixed">
+                <thead>
+                    <tr scope="row">
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Favorite Team</th>
+                    </tr>
+                </thead>
+                <tbody id="studentData">
+                    
+                </tbody>
+        </div>
+    </div>
+        
+    </body>
+</html>

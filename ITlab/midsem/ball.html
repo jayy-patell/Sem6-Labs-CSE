@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouncing Ball Animation</title>
+<style>
+    #ball {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        border-radius: 50%;
+    }
+</style>
+</head>
+<body>
+
+<div id="ball"></div>
+
+<script>
+    const ball = document.getElementById('ball');
+    const animationDuration = 1000; // in milliseconds
+    const startY = 50; // starting position of the ball
+    const endY = 300; // ending position of the ball
+
+    // Define the animation
+    const bounceAnimation = ball.animate([
+        { transform: `translateY(${startY}px)` }, 
+        { transform: `translateY(${endY}px)` },
+        { transform: `translateY(${startY}px)` }
+    ], {
+        duration: animationDuration,
+        iterations: Infinity // Loop indefinitely
+    });
+
+    // Set easing for smooth animation
+    bounceAnimation.easing = 'ease-in-out';
+</script>
+
+</body>
+</html>

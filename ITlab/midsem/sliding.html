@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sliding Text on Image</title>
+<style>
+    /* Style for the container holding the image and text */
+    .container {
+        position: relative;
+        width: 800px; /* Adjust width as per your image */
+        margin: 0 auto; /* Center the container */
+        background-color: yellowgreen;
+    }
+
+    /* Style for the image */
+    img {
+        width: 100%;
+        height: auto;
+        display: block; /* Prevents bottom margin from appearing */
+    }
+
+    /* Style for the sliding text */
+    .sliding-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 10px;
+        animation: slide 5s linear infinite; /* Adjust animation duration as needed */
+    }
+
+    /* Keyframes for the sliding animation */
+    @keyframes slide {
+        0% {
+            transform: translate(-50%, -50%);
+        }
+        100% {
+            transform: translate(-50%, -50%) translateY(-100%);
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <img src="" alt="Your Image">
+    <div class="sliding-text">Your Sliding Text Goes Here</div>
+</div>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ class Human:
     # namespaces. Methods(or objects or attributes) like: __init__, __str__,
     # __repr__ etc. are called special methods (or sometimes called dunder methods) 
     # You should not invent such names on your own. 
+    # __doc__ gives us the docstring of that class.
     def __init__(self, name):
         # Assign the argument to the instance's name attribute 
         self.name = name
