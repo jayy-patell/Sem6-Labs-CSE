@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Preferences</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <script type = "text/javascript" language = "javascript"> 
+           $(document).ready(function() { 
+                var count = 5;
+                var cnt2 = 5;
+                var cnt3 = 5;
+                $("#update-btn1").click(function() {
+                    count++;
+                    //$("#counter").html("My current count is: "+count);
+                })
+                $("#update-btn2").click(function() {
+                    cnt2++;
+                    //$("#counter").html("My current count is: "+cnt2);
+                })
+                $("#update-btn3").click(function() {
+                    cnt3++;
+                    //$("#counter").html("My current count is: "+cnt3);
+                })
+
+                $("#last").click(function() {
+                    event.preventDefault();
+                    if(count<10){
+                        count = "Not offered this semester";
+                    }
+                    if(cnt2<10){
+                        cnt2 = "Not offered this semester";
+                    }
+                    if(cnt3<10){
+                        cnt3 = "Not offered this semester";
+                    }
+                    let bill = "Deep Learning: " + count + "\nSoftware: " + cnt2 + "\nDigital: " + cnt3 + "\n";
+                    alert(bill);
+                })
+            }); 
+        </script> 
+        <style>
+            .column {
+              float: left;
+              width: 33.33%;
+              padding: 5px;
+            }
+            
+            /* Clearfix (clear floats) */
+            .row::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            </style>
+    </head>
+    <body>
+        <h1>Elective Subjects Preferences POLL</h1>
+        <div class="row">
+            <div class="column" id="phy">
+              <img src="https://www.w3schools.com/howto/img_snow.jpg" alt="Snow" style="width:100%">
+              <button id="update-btn1" type="button" class="btn btn-success">Vote</button>
+            </div>
+            <div class="column" id="chem">
+              <img src="https://www.w3schools.com/howto/img_snow.jpg" alt="Forest" style="width:100%">
+              <button id="update-btn2" type="button" class="btn btn-success">Vote</button>
+            </div>
+            <div class="column" id="math">
+              <img src="https://www.w3schools.com/howto/img_snow.jpg" alt="Mountains" style="width:100%">
+              <button id="update-btn3" type="button" class="btn btn-success">Vote</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" id="last">Submit Votes</button>
+    </body>
+</html>
