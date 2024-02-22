@@ -8,8 +8,8 @@ msg = "hello"
 s.sendto(msg.encode(),(udp_host,udp_port))
 
 # Receive no more than 1024 bytes
-tm = s.recv(1024)
+tm,addr = s.recvfrom(1024)
 print(' Current time from Sever :', tm.decode())
-date = s.recv(1024)
+date,addr = s.recvfrom(1024)
 print(' Current day from Sever :', date.decode())
 s.close()

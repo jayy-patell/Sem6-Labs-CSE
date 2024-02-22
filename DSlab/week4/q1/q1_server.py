@@ -10,10 +10,12 @@ udp_port = 12345 # specified port to connect
 
 sock.bind((udp_host, udp_port))
 
-while True:
-	print("Waiting for client...")
-	currentTime = time.ctime(time.time()) + "\r\n"
-	sock.send(currentTime.encode('ascii'))
-	dateAsString = str(date.today())
-	sock.send(dateAsString.encode())
-	sock.close()
+
+print("Waiting for client...")
+data,addr = sock.recvfrom(1024)
+currentTime = time.ctime(time.time()) + "\r\n"
+sock.sendto(str(currentTime).encode('ascii'),addr)
+dateAsString = str(date.today())
+sock.sendto(dateAsString.encode(),addr)
+
+sock.close()
