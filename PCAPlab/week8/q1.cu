@@ -1,59 +1,36 @@
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 #include <stdio.h>
-#include <cuda_runtime.h>
-
-#define MAX_SENTENCE_LENGTH 100
-#define MAX_WORD_LENGTH 10
-#define BLOCK_SIZE 128
-
-__global__ void countWordKernel(char* sentence_h, int* wordCount_h, char* word_h) {
-    int index = blockIdx.x * blockDim.x + threadIdx.x;
-    int stride = blockDim.x * gridDim.x;
-
-    while (index < MAX_SENTENCE_LENGTH) {
-        int i = 0;
-        while (i < MAX_WORD_LENGTH && word_h[i] != '\0' && sentence_h[index + i] == word_h[i]) {
-            i++;
-        }
-        if (i == MAX_WORD_LENGTH || word_h[i] == '\0') {
-            atomicAdd(wordCount_h, 1);
-        }
-        index += stride;
-    }
+#include <stdlib.h>
+#define N 1024
+__global__ void wordFreq(char *sent,char *word,int n,int *d_count)
+{	
+	int i = threadIdx.x;
+	for(int j=0; j<n; j++) 
+	{		
+		if(sent[i+j]!=word[j]) return;
+	}
+	atomicAdd(d_count,1);
 }
 
-int main() {
-
-    char sentence_h[MAX_SENTENCE_LENGTH];
-    char word_h[MAX_WORD_LENGTH];
-    int wordCount_h;
-
-    printf("Enter a sentence: ");
-    scanf("%[^\n]s",sentence_h);
-    printf("Enter a word: ");
-    scanf("%s", word_h);
-
-    char* sentence_d;
-    char* word_d;
-    int* wordCount_d;
-
-    cudaMalloc(&sentence_d, MAX_SENTENCE_LENGTH * sizeof(char));
-    cudaMalloc(&word_d, MAX_WORD_LENGTH * sizeof(char));
-    cudaMalloc(&wordCount_d, sizeof(int));
-    
-    cudaMemcpy(sentence_d, sentence_h, MAX_SENTENCE_LENGTH * sizeof(char), cudaMemcpyHostToDevice);
-    cudaMemcpy(word_d, word_h, MAX_WORD_LENGTH * sizeof(char), cudaMemcpyHostToDevice);
-    cudaMemcpy(wordCount_d, &wordCount_h, sizeof(int), cudaMemcpyHostToDevice);
-    
-    countWordKernel<<<(MAX_SENTENCE_LENGTH + BLOCK_SIZE - 1) / BLOCK_SIZE, BLOCK_SIZE>>>(sentence_d, wordCount_d, word_d);
-
-    cudaMemcpy(&wordCount_h, wordCount_d, sizeof(int), cudaMemcpyDeviceToHost);
-
-    printf("The word '%s' appears %d times in the sentence.\n", word_h, wordCount_h);
-
-    cudaFree(sentence_d);
-    cudaFree(word_d);
-    cudaFree(wordCount_d);
-
-    return 0;
-
+int main(void)
+{
+	char sent[N],word[100],*d_sent,*d_word;
+	int count=0, *d_count;
+	printf("Enter a sentence: "); fgets(sent,N,stdin);
+	printf("Enter a word: "); scanf("%s",word);
+	printf("Sentence: %sWord: %s\n",sent,word);
+	cudaMalloc((void **)&d_sent,strlen(sent)*sizeof(char));
+	cudaMalloc((void **)&d_word,strlen(word)*sizeof(char));
+	cudaMalloc((void **)&d_count,sizeof(int));
+	cudaMemcpy(d_sent,sent,strlen(sent)*sizeof(char),cudaMemcpyHostToDevice);
+	cudaMemcpy(d_word,word,strlen(word)*sizeof(char),cudaMemcpyHostToDevice);
+	cudaMemcpy(d_count,&count,sizeof(int), cudaMemcpyHostToDevice);
+	wordFreq<<<1,strlen(sent)-strlen(word)>>>(d_sent,d_word,strlen(word), d_count);
+	cudaMemcpy(&count,d_count,sizeof(int),cudaMemcpyDeviceToHost);
+	printf("Word occurences: %d\n",count);
+	cudaFree(d_sent);
+	cudaFree(d_word);
+	cudaFree(d_count);
+	return 0;
 }

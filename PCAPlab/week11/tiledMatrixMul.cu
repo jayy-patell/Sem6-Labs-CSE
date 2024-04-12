@@ -1,84 +1,61 @@
-// Matrix multiplication of 4x4 matrix 
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <cuda_runtime.h>
-#include <stdio.h>
-#define BLOCK_WIDTH 2
-#define TILE_WIDTH 2
+#define BW 2
+#define TW 2
 #define WIDTH 4
 
-__global__ void MatMulElementThreadShared(int *a, int *b, int *c)
+__global__ void matmul(int *a, int *b, int *t)
 {
-    __shared__ int MDs[TILE_WIDTH][TILE_WIDTH];
-    __shared__ int NDs[TILE_WIDTH][TILE_WIDTH];
-    int m;
-    int bx = blockIdx.x;
-    int by = blockIdx.y;
-    int tx = threadIdx.x;
-    int ty = threadIdx.y;
-    int Row = by * TILE_WIDTH + ty;
-    int Col = bx * TILE_WIDTH + tx;
-    int Pvalue = 0;
-    for (m = 0; m < WIDTH / TILE_WIDTH; m++)
-    {
-        MDs[ty][tx] = a[Row * WIDTH + m * TILE_WIDTH + tx];
-        NDs[ty][tx] = b[(m * TILE_WIDTH + ty) * WIDTH + Col];
-        __syncthreads();
-        for (int k = 0; k < TILE_WIDTH; k++)
-        {
-            Pvalue += MDs[ty][k] * NDs[k][tx];
-        }
-        __syncthreads();
-    }
-    c[Row * WIDTH + Col] = Pvalue;
+	__shared__ int MDs[TW][TW];
+	__shared__ int NDs[TW][TW];
+	int bx=blockIdx.x, by = blockIdx.y, tx = threadIdx.x, ty = threadIdx.y;
+	int r=by*TW + ty, c = bx*TW+tx;
+	int pval=0;
+	for(int m=0; m<WIDTH/TW; m++)
+	{
+		MDs[ty][tx]=a[r*WIDTH + m*TW + tx];
+		NDs[ty][tx]=b[(m*TW + ty)*WIDTH + c];
+		__syncthreads();
+		for(int k=0; k<TW; k++)
+		{
+			pval+=MDs[ty][k]*NDs[k][tx];
+		}
+		__syncthreads();
+	}
+	t[r*WIDTH + c] = pval;
 }
-
-int main()
+int main(void)
 {
-    int *matA, *matB, *matProd;
-    int *da, *db, *dc;
-    printf("\n== Enter elements of Matrix A (4x4)==\n");
-    matA = (int *)malloc(sizeof(int) * WIDTH * WIDTH);
-    for (int i = 0; i < WIDTH * WIDTH; i++)
-    {
-        scanf("%d", &matA[i]);
-    }
-    printf("\n== Enter elements of Matrix B (4x4)=\n");
-    matB = (int *)malloc(sizeof(int) * WIDTH * WIDTH);
-    for (int i = 0; i < WIDTH * WIDTH; i++)
-    { 
-        scanf("%d", &matB[i]);
-    }
-   
-    matProd = (int *)malloc(sizeof(int) * WIDTH * WIDTH);
-    cudaMalloc((void **)&da, sizeof(int) * WIDTH * WIDTH);
-    cudaMalloc((void **)&db, sizeof(int) * WIDTH * WIDTH);
-    cudaMalloc((void **)&dc, sizeof(int) * WIDTH * WIDTH);
-    cudaMemcpy(da, matA, sizeof(int) * WIDTH * WIDTH, cudaMemcpyHostToDevice);
-    cudaMemcpy(db, matB, sizeof(int) * WIDTH * WIDTH, cudaMemcpyHostToDevice);
-    int NumBlocks = WIDTH / BLOCK_WIDTH;
-    dim3 grid_conf(NumBlocks, NumBlocks);
-    dim3 block_conf(BLOCK_WIDTH, BLOCK_WIDTH);
-    MatMulElementThreadShared<<<grid_conf, block_conf>>>(da, db, dc);
-    cudaMemcpy(matProd, dc, sizeof(int) * WIDTH * WIDTH, cudaMemcpyDeviceToHost);
-    printf("\n--Result of Multiplication=-\n");
-    printf("----------------\n");
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            printf("%6d", matProd[i * 4 + j]);
-        }
-        printf("\n");
-    }
-
-    cudaFree(da);
-    cudaFree(db);
-    cudaFree(dc);
-    free(matA);
-    free(matB);
-    free(matProd);
-
-    return 0;
+	int *a, *b, *t;
+	int *d_a,*d_b,*d_t;
+	int size = sizeof(int)*WIDTH*WIDTH;
+	a = (int *) malloc(size);
+	b = (int *) malloc(size);
+	t = (int *) malloc(size);
+	printf("Enter matrix A (4x4): ");
+	for(int i=0; i<WIDTH*WIDTH; i++) scanf("%d",&a[i]);
+	printf("Enter matrix B: ");
+	for(int i=0; i<WIDTH*WIDTH; i++) scanf("%d",&b[i]);
+	cudaMalloc((void **) &d_a,size);
+	cudaMalloc((void **) &d_b,size);
+	cudaMalloc((void **) &d_t,size);
+	cudaMemcpy(d_a,a,size,cudaMemcpyHostToDevice);
+	cudaMemcpy(d_b,b,size,cudaMemcpyHostToDevice);
+	int numblocks = WIDTH/BW;
+	dim3 block(BW,BW,1), grid(numblocks,numblocks,1);
+	matmul<<<grid,block>>>(d_a,d_b,d_t);
+	cudaMemcpy(t,d_t,size,cudaMemcpyDeviceToHost);
+	printf("Result vector:\n");
+	for(int i=0; i<WIDTH; i++)
+	{
+		for(int j=0; j<WIDTH; j++) printf("%d ",t[i*WIDTH+j]);
+		printf("\n");
+	}
+	cudaFree(d_a);
+	cudaFree(d_b);
+	cudaFree(d_t);
+	return 0;	
 }
