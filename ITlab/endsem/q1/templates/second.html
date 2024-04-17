@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Second</title>
+    </head>
+    <body>
+        <h1>Add Employee</h1>
+        <form action="/add/" method="POST">
+            {% csrf_token %}
+            {{ empform }}
+            <button type="submit">Add</button>
+            {{ error }}
+        </form>
+    </body>
+</html>

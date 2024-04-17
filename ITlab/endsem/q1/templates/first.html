@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>First</title>
+    </head>
+    <body>
+        <h1>List of Employees</h1>
+        <h2>Employee Name - Salary - Designation</h2>
+        {% for employee in employees %}
+            <p>{{employee.name}} - {{employee.salary}} - {{employee.designation}}</p>
+            <button formaction="/edit/" formmethod="POST">Edit</button>
+            <form action=/second>
+                {% csrf_token %}
+                <button type="submit">Add Page</button>
+            </form>
+            <form action=/delete/{{employee.name}}/ method="POST">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        {% endfor %}
+    </body>
+</html>
