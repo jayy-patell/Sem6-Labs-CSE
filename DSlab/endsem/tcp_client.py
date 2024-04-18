@@ -13,9 +13,9 @@ sock.connect((HOST,PORT))
 #     num = input("Enter the number: ")
 #     lst.append(num)
 
-lst = ['121','233','222']
+# lst = ['121','233','222']
 
-# lst = [int(x) for x in input("Enter the numbers: ").split()]
+lst = [x for x in input("Enter the numbers: ").split()]
 
 string = ",".join(lst)
 print(string)
