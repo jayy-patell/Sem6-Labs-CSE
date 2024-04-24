@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Q1</title>
+</head>
+<body>
+    <h1>Customer Feedback</h1>
+    <form action="." method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+    {% if context %}
+    <p>Thankyou for feedback {{context.name}}</p>
+    {% endif %}
+</body>
+</html>

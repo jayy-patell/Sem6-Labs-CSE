@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Q1</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <form action="create/" method="post">
+        {% csrf_token %}
+        <table>{{cat_form}}</table>
+        <table>{{page_form}}</table>
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+    {% for category in categories %}
+    <h2>{{ category.name }}</h2>
+    <p>visits : {{ category.visits }}</p>
+    <p>likes : {{ category.likes }}</p>
+    <hr>
+    {% endfor %}
+    <br><br>
+    {% for page in pages %}
+    <h2>{{ page.title }}</h2>
+    <p>category : {{ page.category }}</p>
+    <p>url : {{ page.url }}</p>
+    <p>views : {{ page.views }}</p>
+    <hr>
+    {% endfor %}
+    <h1>BYE</h1>
+</body>
+</html>
